@@ -35,12 +35,12 @@ router.get('/:id', async (req, res) => {
         console.log(err)
         res.status(500).json({ error: 'Failed to get the user by id' })
     }
-})
+});
 
 router.post('/', async (req, res) => {
     try {
         const user = await Users.add(req.body)
-        res.json(user)
+        res.status(201).json(user)
     }
     catch (err) {
         console.log(err)
@@ -58,19 +58,7 @@ router.put('/:id', async (req, res) => {
         console.log(err)
         res.status(500).json({ error: 'Failed to update the user' })
     }
-})
-// router.put('/:id', (req, res) => {
-//     const id = req.params.id;
-//     const update = req.body;
-//     Users.update(update, id)
-//     .then(count => {
-//         Users.findById(id)
-//         .then(user => {
-//             res.status(200).json(user);
-//         })
-//     })
-//     .catch(err => res.status(500).send({message: 'Server Error. Unable to update user.', error: err}));
-// })
+});
 
 router.delete('/:id', async (req, res) => {
     try {
@@ -82,5 +70,6 @@ router.delete('/:id', async (req, res) => {
         console.log(err)
         res.status(500).json({ errpr: 'Failed to remove user' })
     }
-})
+});
+
 module.exports = router;
