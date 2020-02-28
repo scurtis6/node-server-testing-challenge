@@ -7,7 +7,7 @@ exports.up = function(knex) {
 
       tbl.string('city', 128)
 
-      tbl.string('state', 128).notNullable();
+      tbl.string('state', 2).notNullable();
 
       tbl.string('username', 128)
       .notNullable().unique();

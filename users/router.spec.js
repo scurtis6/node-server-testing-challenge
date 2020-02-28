@@ -32,25 +32,25 @@ describe('users router', function() {
                 "state": "ME",
                 "username": "newuser"
             }
-            it('should return 201 CREATED (it is returning 500 instead of 201)', function() {
+            it('should return 201 CREATED', function() {
                 return request(server).post('/api/users').send(newUser).then(res => {
-                    console.log(res.headers)
-                        expect(res.status).toBe(201)
-                    });
+                    expect(res.status).toBe(201)
                 });
+            });
                 it('should not allow users with the same username', function() {
                     return request(server).post('/api/users').send(newUser).then(res => {
                         expect(res.status).toBe(500)
-                    })
-                })
+                    });
+                });
             });
 
         const id = 2;
 
         describe('PUT /', function () {
             const update = {
-                "username": "update",
-                "name": "update"
+                "name": "testupdate",
+                "state": "PA",
+                "username": "test update",
             }
             it('should return 200 updated', function () {
                 return request(server)
