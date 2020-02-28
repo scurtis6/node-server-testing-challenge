@@ -8,11 +8,19 @@ describe('users router', function() {
     });
 
     describe('GET /', function() {
-        it('should return 200 OK', function () {
+        it('should return 200 OK', function() {
             return request(server).get('/api/users').then(res => {
                 expect(res.status).toBe(200);
             });
         });
+
+        describe('DELETE /', function() {
+            it('should return 200 OK', function() {
+                return request(server).delete('/api/users/:id').then(res => {
+                    expect(res.status).toBe(200)
+                })
+            })
+        })
 
         it('should return JSON formatted body', function () {
             return request(server).get('/api/users').then(res => {
@@ -20,15 +28,10 @@ describe('users router', function() {
             });
         });
 
-        it('should return users as the router value', function () {
+        it('should return a list of users', function() {
             return request(server).get('/api/users').then(res => {
-                expect(res.body.router).toBe('users')
+                expect(Array.isArray(res.body)).toBe(true)
             });
-        });
-
-        it('should return users as the router value (aysnc verison)', async function () {
-            const res = await request(server).get('/api/users')
-                expect(res.body.router).toBe('users')
         });
     });
 });
